@@ -1,0 +1,36 @@
+create database assignments3;
+use assignments3;
+create table Employee
+(
+empid int (5) not null primary key,
+emp_name varchar(30),
+dept_id int(5),
+salary int(5),
+manager int(5),
+constraint fk_dept foreign key (dept_id) references department(dept_id));
+
+create table department(
+dept_id int (5) primary key,
+dept_name varchar(30)
+);
+desc employee;
+
+desc department;
+insert into employee values (1 ,'Arun',1,8000,4);
+insert into employee values (2 ,'Kiran',1,7000,1);
+insert into employee values (3 ,'Scott',1,3000,1);
+insert into employee values (4 ,'Max',2,9000,null);
+insert into employee values (5 ,'Jack',2,8000,4);
+insert into employee values (6 ,'King',null,6000,1);
+insert into department values(1	,	'Finance');
+insert into department values(2	,	'Training');
+insert into department values(3	,	'Marketing');
+
+select * from  employee;
+desc employee;
+select emp_name from employee order by emp_name;
+select emp_name from employee order by emp_name desc;
+select * ,sum(salary) from employee group by (dept_id); 
+select dept_id ,sum(salary) from employee  group by (dept_id) having sum(salary)>17000 ;
+select dept_id ,sum(salary) from employee  group by (dept_id) having sum(salary)>18000 ;
+select dept_id "Department id" ,sum(salary) "Sum OF Salary" from employee  group by (dept_id) having sum(salary)<20000 ;
